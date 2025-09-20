@@ -4,6 +4,12 @@
  */
 package student;
 
+import java.awt.Color;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author damiduuofc
@@ -11,12 +17,16 @@ package student;
 public class Home extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Home.class.getName());
-
-    /**
-     * Creates new form Home
-     */
+    
+    Student student = new Student();
+    
+    int xx,xy;
+  private DefaultTableModel model;
     public Home() {
         initComponents();
+        init();
+        tableViewStudent();
+        clearStudent();
     }
 
     /**
@@ -57,7 +67,7 @@ public class Home extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabelImage = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -174,12 +184,28 @@ public class Home extends javax.swing.JFrame {
         jButton33 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("Student Management System");
@@ -206,6 +232,8 @@ public class Home extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(102, 255, 204));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 153), 4, true));
 
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -273,7 +301,7 @@ public class Home extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(153, 255, 204));
         jPanel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 4, true));
 
-        jLabel12.setText("jLabelImage");
+        jLabelImage.setText("jLabelImage");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -281,12 +309,12 @@ public class Home extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -455,11 +483,11 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Student's ID", "Student's Name", "Date Of Birth", "Gender", "Email", "Phone Number", "Mother's Name", "Address Line 1", "Address Line 2"
+                "Student's ID", "Student's Name", "Date Of Birth", "Gender", "Email", "Phone Number", "Father's Name", "Mother's Name", "Address Line 1", "Address Line 2", "Image Path"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -467,9 +495,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(8).setHeaderValue("Address Line 2");
-        }
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -515,10 +540,20 @@ public class Home extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(102, 255, 255));
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton8.setText("Clear");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(102, 255, 255));
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton9.setText("LogOut");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -877,6 +912,11 @@ public class Home extends javax.swing.JFrame {
         jButton18.setBackground(new java.awt.Color(102, 255, 255));
         jButton18.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton18.setText("LogOut");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -1290,6 +1330,11 @@ public class Home extends javax.swing.JFrame {
         jButton24.setBackground(new java.awt.Color(102, 255, 255));
         jButton24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton24.setText("LogOut");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -1514,6 +1559,11 @@ public class Home extends javax.swing.JFrame {
         jButton33.setBackground(new java.awt.Color(102, 255, 255));
         jButton33.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton33.setText("LogOut");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -1618,8 +1668,38 @@ public class Home extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+     public void init(){
+        tableViewStudent();
+    jTextField1.setText(String.valueOf(student.getMax()));
+     }
+private void tableViewStudent() {
+    model = (DefaultTableModel) jTable1.getModel();
+    jTable1.setRowHeight(30);
+    jTable1.setShowGrid(true);
+    jTable1.setGridColor(Color.black);
+    jTable1.setBackground(Color.white);
+}
+
+    
+    private void clearStudent(){
+        
+    jTextField1.setText(String.valueOf(student.getMax()));
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        jTextField5.setText(null);
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        jTextField9.setText(null);
+        jComboBox1.setSelectedIndex(0);
+        jLabelImage.setIcon(null);
+        jTable1.clearSelection();
+    }
+    
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -1659,6 +1739,69 @@ public class Home extends javax.swing.JFrame {
     private void jTextField38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField38ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField38ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+       int a = JOptionPane.showConfirmDialog(this, "Do you want to logout now?","Select",JOptionPane.YES_NO_OPTION);
+       if(a == 0){
+           this.dispose();
+       }
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+       int a = JOptionPane.showConfirmDialog(this, "Do you want to logout now?","Select",JOptionPane.YES_NO_OPTION);
+       if(a == 0){
+           this.dispose();
+       }
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+               int a = JOptionPane.showConfirmDialog(this, "Do you want to logout now?","Select",JOptionPane.YES_NO_OPTION);
+       if(a == 0){
+           this.dispose();
+       }
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+               int a = JOptionPane.showConfirmDialog(this, "Do you want to logout now?","Select",JOptionPane.YES_NO_OPTION);
+       if(a == 0){
+           this.dispose();
+       }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+   
+    Timer timer = new Timer(10, null); // 40ms delay
+    final float[] opacity = {0.1f};
+
+    timer.addActionListener(e -> {
+        this.setOpacity(opacity[0]);
+        opacity[0] += 0.1f;
+
+        if (opacity[0] > 1.0f) {
+            this.setOpacity(1.0f); // ensure full opacity
+            timer.stop();
+        }
+    });
+
+    timer.start();
+
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        clearStudent();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1727,7 +1870,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1761,6 +1903,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelImage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
