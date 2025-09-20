@@ -12,7 +12,7 @@ public class MyConnection {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            // Use username AND password correctly
+        
             con = DriverManager.getConnection(dataConn, username, password);
         } catch (Exception ex) {
             System.out.println("Connection failed: " + ex.getMessage());

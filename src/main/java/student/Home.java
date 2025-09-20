@@ -5,9 +5,15 @@
 package student;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +27,8 @@ public class Home extends javax.swing.JFrame {
     Student student = new Student();
     
     int xx,xy;
+    
+    private String imagePath;
   private DefaultTableModel model;
     public Home() {
         initComponents();
@@ -252,6 +260,16 @@ public class Home extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
         jTextField5.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
 
         jTextField6.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
@@ -297,11 +315,14 @@ public class Home extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(51, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton1.setText("Browse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel7.setBackground(new java.awt.Color(153, 255, 204));
         jPanel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 4, true));
-
-        jLabelImage.setText("jLabelImage");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1698,6 +1719,61 @@ private void tableViewStudent() {
         jComboBox1.setSelectedIndex(0);
         jLabelImage.setIcon(null);
         jTable1.clearSelection();
+        imagePath = null;
+    }
+    
+    public boolean isEmptyStudent(){
+        if(jTextField3.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this,"Student name is missing");
+           return false;
+        }
+        if(jTextField2.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this,"Student Date of Bith is missing");
+           return false;
+    }
+        if(jTextField4.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this,"Student email is missing");
+           return false; 
+        }
+        
+        if(jTextField5.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")){
+        JOptionPane.showMessageDialog(this,"Invalid email address");
+        return false;
+        }
+        
+  
+
+        if(jTextField5.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Student Phone number is missing");
+        return false;  
+    }  
+        
+        if(jTextField5.getText().length()>10){
+        JOptionPane.showMessageDialog(this,"Phone number is too long");
+        return false;  
+    } 
+        
+        if(jTextField6.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Student Farther's Name is missing");
+        return false;  
+    }
+        if(jTextField7.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Student Mother's Name is missing");
+        return false;  
+    } 
+        if(jTextField8.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Student AddressLine 1 is missing");
+        return false;  
+    } 
+        if(jTextField9.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Student AddressLine 2 is missing");
+        return false;  
+    } 
+         if(imagePath==null){
+        JOptionPane.showMessageDialog(this,"Please upload the photo");
+        return false;  
+    } 
+        return true;
     }
     
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -1705,7 +1781,23 @@ private void tableViewStudent() {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if(isEmptyStudent()){
+            int id = student.getMax();
+            String name = jTextField3.getText();
+            String date = jTextField2.getText();
+            String gender = jComboBox1.getSelectedItem().toString();
+            String email = jTextField4.getText();
+            String Phone = jTextField5.getText();
+            String Farther = jTextField6.getText();
+            String Mother = jTextField7.getText();
+            String Address1 = jTextField8.getText();
+            String Address2 = jTextField9.getText();
+            student.insert(id, name, date, gender, email, Phone, Farther, Mother, Address1, Address2, imagePath);
+
+            clearStudent();
+
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -1803,6 +1895,46 @@ private void tableViewStudent() {
         clearStudent();
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+       if(!Character.isDigit(evt.getKeyChar())) {
+          evt.consume(); 
+       }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("* image","ipg","gif","png");
+        file.addChoosableFileFilter(filter);
+        int output = file.showSaveDialog(file);
+        if(output==JFileChooser.APPROVE_OPTION){
+          File selectFile = file.getSelectedFile();
+          String path = selectFile.getAbsolutePath();
+          jLabelImage.setIcon(imageAdjust(path,null));
+          imagePath = path;
+        
+        }else{
+            JOptionPane.showMessageDialog(this,"No Image Select");
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private ImageIcon imageAdjust(String path, byte[] pic){
+         ImageIcon myImage = null;
+         if(path != null){
+           myImage = new ImageIcon(path);
+         }else{
+             myImage = new ImageIcon(pic);
+         }
+         Image img = myImage.getImage();
+         Image newImage = img.getScaledInstance(jLabelImage.getWidth(),jLabelImage.getHeight(), Image.SCALE_SMOOTH);
+         ImageIcon icon = new ImageIcon(newImage);
+         return icon;
+    }
     /**
      * @param args the command line arguments
      */
