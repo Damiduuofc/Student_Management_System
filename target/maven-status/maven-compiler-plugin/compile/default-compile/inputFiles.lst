@@ -2,6 +2,8 @@
 /Users/damiduuofc/Desktop/Student_Management_System/src/main/java/db/MyConnection.java
 /Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/Course.java
 /Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/Home.java
+/Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/Login.java
+/Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/LoginDAO.java
 /Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/MarksSheet.java
 /Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/Score.java
 /Users/damiduuofc/Desktop/Student_Management_System/src/main/java/student/ScoreRecord.java

@@ -223,6 +223,44 @@ public boolean update(int studentId, int semesterNo,
     }
 }
 
+// Calculate and display CGPA directly in jLabel25
+public void showCGPA(int studentId, javax.swing.JLabel jLabel25) {
+    double cgpa = 0.0;
+    int count = 0;
+
+    String query = "SELECT score1, score2, score3, score4, score5 FROM score WHERE student_id=?";
+    try (PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setInt(1, studentId);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            for (int i = 1; i <= 5; i++) {
+                double marks = rs.getDouble("score" + i);
+                double gpa = getGPAFromMarks(marks); // Convert marks → GPA
+                cgpa += gpa;
+                count++;
+            }
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Score.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    if (count > 0) {
+        cgpa /= count;
+    }
+
+    // Show result in jLabel25 (formatted to 2 decimals)
+    jLabel25.setText(String.format("CGPA: %.2f", cgpa));
+}
+
+// Helper method to convert marks into GPA
+private double getGPAFromMarks(double marks) {
+    if (marks >= 85) return 4.0;
+    else if (marks >= 70) return 3.0;
+    else if (marks >= 55) return 2.0;
+    else if (marks >= 40) return 1.0;
+    else return 0.0;
+}
 
 
 
