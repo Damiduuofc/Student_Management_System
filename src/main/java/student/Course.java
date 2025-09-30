@@ -11,9 +11,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+        /**
+         *
+         * @author damiduuofc
+         */
 public class Course {
-
+        
     private static final Logger LOGGER = Logger.getLogger(Course.class.getName());
     private Connection con = MyConnection.getConnection();
     PreparedStatement ps;

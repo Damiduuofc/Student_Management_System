@@ -7,6 +7,7 @@ import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,10 @@ public class Home extends javax.swing.JFrame {
 
     Student student = new Student();
     Course course = new Course();
+    Score score = new Score();
+    MarksSheet marksSheet = new MarksSheet();
     int xx, xy;
+    NumberFormat nf = NumberFormat.getInstance();
 
     private String imagePath;
     private DefaultTableModel model;
@@ -143,7 +147,7 @@ public class Home extends javax.swing.JFrame {
         jLabel60 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        jTextFieldStudentID = new javax.swing.JTextField();
         jTextField33 = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
@@ -151,18 +155,17 @@ public class Home extends javax.swing.JFrame {
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField35 = new javax.swing.JTextField();
-        jTextField36 = new javax.swing.JTextField();
-        jTextField37 = new javax.swing.JTextField();
+        jTextFieldSemesterNO = new javax.swing.JTextField();
+        jTextCourse1 = new javax.swing.JTextField();
+        jTextCourse2 = new javax.swing.JTextField();
+        jTextCourse3 = new javax.swing.JTextField();
+        jTextCourse4 = new javax.swing.JTextField();
+        jTextCourse5 = new javax.swing.JTextField();
+        jTextScore1 = new javax.swing.JTextField();
+        jTextScore2 = new javax.swing.JTextField();
+        jTextScore3 = new javax.swing.JTextField();
+        jTextScore4 = new javax.swing.JTextField();
+        jTextScore5 = new javax.swing.JTextField();
         jPanel22 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
@@ -387,7 +390,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 445, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1123,14 +1126,29 @@ public class Home extends javax.swing.JFrame {
                 jTextField31ActionPerformed(evt);
             }
         });
+        jTextField31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField31KeyTyped(evt);
+            }
+        });
 
         jButton38.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton38.setText("Search");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
 
         jTextField34.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jTextField34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField34ActionPerformed(evt);
+            }
+        });
+        jTextField34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField34KeyTyped(evt);
             }
         });
 
@@ -1160,8 +1178,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel51)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addComponent(jButton38)
@@ -1169,7 +1187,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)))
+                        .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
                 .addGap(6, 6, 6))
         );
 
@@ -1179,8 +1197,17 @@ public class Home extends javax.swing.JFrame {
         jLabel53.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel53.setText("Student's ID");
 
-        jTextField32.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextFieldStudentID.setEditable(false);
+        jTextFieldStudentID.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldStudentID.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextFieldStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldStudentIDActionPerformed(evt);
+            }
+        });
 
+        jTextField33.setEditable(false);
+        jTextField33.setBackground(new java.awt.Color(204, 204, 204));
         jTextField33.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jTextField33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1206,41 +1233,69 @@ public class Home extends javax.swing.JFrame {
         jLabel59.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel59.setText("Course 5");
 
-        jTextField13.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextFieldSemesterNO.setEditable(false);
+        jTextFieldSemesterNO.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldSemesterNO.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextFieldSemesterNO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSemesterNOActionPerformed(evt);
+            }
+        });
 
-        jTextField14.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextCourse1.setEditable(false);
+        jTextCourse1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextCourse1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        jTextField15.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextCourse2.setEditable(false);
+        jTextCourse2.setBackground(new java.awt.Color(204, 204, 204));
+        jTextCourse2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        jTextField16.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextCourse3.setEditable(false);
+        jTextCourse3.setBackground(new java.awt.Color(204, 204, 204));
+        jTextCourse3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        jTextField17.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextCourse4.setEditable(false);
+        jTextCourse4.setBackground(new java.awt.Color(204, 204, 204));
+        jTextCourse4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextCourse4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCourse4ActionPerformed(evt);
+            }
+        });
 
-        jTextField18.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextCourse5.setEditable(false);
+        jTextCourse5.setBackground(new java.awt.Color(204, 204, 204));
+        jTextCourse5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        jTextField19.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField19.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField19.setText("0.0");
+        jTextScore1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextScore1.setText("0.0");
+        jTextScore1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextScore1ActionPerformed(evt);
+            }
+        });
 
-        jTextField20.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField20.setText("0.0");
+        jTextScore2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextScore2.setText("0.0");
+        jTextScore2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextScore2ActionPerformed(evt);
+            }
+        });
 
-        jTextField21.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField21.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField21.setText("0.0");
+        jTextScore3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextScore3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextScore3.setText("0.0");
 
-        jTextField35.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField35.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField35.setText("0.0");
+        jTextScore4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextScore4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextScore4.setText("0.0");
 
-        jTextField36.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField36.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField36.setText("0.0");
-
-        jTextField37.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField37.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField37.setText("0.0");
+        jTextScore5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTextScore5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextScore5.setText("0.0");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1266,27 +1321,26 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel59)
                                 .addGap(38, 38, 38)))
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField33, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                                .addComponent(jTextField32))
                             .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextCourse5, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextScore5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel19Layout.createSequentialGroup()
                                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(jTextField16, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField15, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField14, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField13, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jTextCourse4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(jTextCourse3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextCourse2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextCourse1, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextScore1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextScore2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextScore3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextScore4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldSemesterNO, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                                .addComponent(jTextFieldStudentID, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1297,42 +1351,41 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField33)
+                    .addComponent(jTextField33, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jLabel52))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField32)
+                    .addComponent(jTextFieldStudentID, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jLabel53))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel54)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSemesterNO, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCourse1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel56)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCourse2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel57)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCourse3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextScore3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel58)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCourse4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextScore4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel59)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCourse5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextScore5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1347,9 +1400,19 @@ public class Home extends javax.swing.JFrame {
 
         jButton14.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton14.setText("Search");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton15.setText("Refersh");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -1390,15 +1453,20 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Student's Name", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5"
+                "ID", "Student's Name", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(jTable3);
@@ -1435,14 +1503,29 @@ public class Home extends javax.swing.JFrame {
         jButton20.setBackground(new java.awt.Color(102, 255, 255));
         jButton20.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton20.setText("Update");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton22.setBackground(new java.awt.Color(102, 255, 255));
         jButton22.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton22.setText("Print");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
 
         jButton23.setBackground(new java.awt.Color(102, 255, 255));
         jButton23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton23.setText("Clear");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
 
         jButton24.setBackground(new java.awt.Color(102, 255, 255));
         jButton24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -1493,7 +1576,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1549,6 +1632,11 @@ public class Home extends javax.swing.JFrame {
 
         jButton39.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton39.setText("Search");
+        jButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton39ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -1632,11 +1720,11 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Student's Name", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5"
+                "ID", "Student's Name", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1668,10 +1756,20 @@ public class Home extends javax.swing.JFrame {
         jButton31.setBackground(new java.awt.Color(102, 255, 255));
         jButton31.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton31.setText("Print");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
 
         jButton32.setBackground(new java.awt.Color(102, 255, 255));
         jButton32.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton32.setText("Clear");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
 
         jButton33.setBackground(new java.awt.Color(102, 255, 255));
         jButton33.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -1791,9 +1889,10 @@ public class Home extends javax.swing.JFrame {
     public void init() {
         tableViewStudent();
         tableViewCourse();
+        tableViewScore();
         jTextField1.setText(String.valueOf(student.getMax()));
         jTextField12.setText(String.valueOf(course.getMax()));
-
+        jTextField33.setText(String.valueOf(score.getMax()));
     }
 
     private void tableViewStudent() {
@@ -1821,7 +1920,10 @@ public class Home extends javax.swing.JFrame {
         jTable1.clearSelection();
         imagePath = null;
     }
-
+    private void clearMaarksSheet(){
+        jTextField38.setText(null);
+        jTable5.clearSelection();
+    }
     public void clearCourse() {
         jTextField12.setText(String.valueOf(course.getMax()));
         jTextField11.setText(null);
@@ -1834,6 +1936,25 @@ public class Home extends javax.swing.JFrame {
         jTable2.clearSelection();
     }
 
+    public void clearScore() {
+        jTextField33.setText(String.valueOf(score.getMax()));
+        jTextField31.setText(null);
+        jTextField34.setText(null);
+        jTextFieldStudentID.setText(null);
+        jTextFieldSemesterNO.setText(null);
+        jTextCourse1.setText(null);
+        jTextCourse2.setText(null);
+        jTextCourse3.setText(null);
+        jTextCourse4.setText(null);
+        jTextCourse5.setText(null);
+        jTextScore1.setText("0.0");
+        jTextScore2.setText("0.0");
+        jTextScore3.setText("0.0");
+        jTextScore4.setText("0.0");
+        jTextScore5.setText("0.0");
+        jTable3.clearSelection();
+    }
+
     private void tableViewCourse() {
         course.getCourseValue(jTable2, "");
         model = (DefaultTableModel) jTable2.getModel();
@@ -1841,6 +1962,27 @@ public class Home extends javax.swing.JFrame {
         jTable2.setShowGrid(true);
         jTable2.setGridColor(Color.black);
         jTable2.setBackground(Color.white);
+
+    }
+
+    private void tableViewScore() {
+        score.getScoreValue(jTable3, "");
+        model = (DefaultTableModel) jTable3.getModel();
+        jTable3.setRowHeight(30);
+        jTable3.setShowGrid(true);
+        jTable3.setGridColor(Color.black);
+        jTable3.setBackground(Color.white);
+
+    }
+
+    private void tableViewMarkSheet(int studentId) {
+        marksSheet.getScoreValue(jTable5, studentId);
+
+        model = (DefaultTableModel) jTable5.getModel();
+        jTable5.setRowHeight(30);
+        jTable5.setShowGrid(true);
+        jTable5.setGridColor(Color.black);
+        jTable5.setBackground(Color.white);
     }
 
     public boolean isEmptyStudent() {
@@ -1893,6 +2035,47 @@ public class Home extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+
+    private void addScore(int sid, int semesterNo) {
+        if (!score.isSidOrSemesterNoExist(sid, semesterNo)) {
+            if (isNumeric(jTextScore1.getText()) && isNumeric(jTextScore2.getText())
+                    && isNumeric(jTextScore3.getText()) && isNumeric(jTextScore4.getText())
+                    && isNumeric(jTextScore5.getText())) {
+
+                int id = score.getMax() + 1;
+
+                String course1 = jTextCourse1.getText();
+                String course2 = jTextCourse2.getText();
+                String course3 = jTextCourse3.getText();
+                String course4 = jTextCourse4.getText();
+                String course5 = jTextCourse5.getText();
+
+                double score1 = Double.parseDouble(jTextScore1.getText());
+                double score2 = Double.parseDouble(jTextScore2.getText());
+                double score3 = Double.parseDouble(jTextScore3.getText());
+                double score4 = Double.parseDouble(jTextScore4.getText());
+                double score5 = Double.parseDouble(jTextScore5.getText());
+
+                double average = (score1 + score2 + score3 + score4 + score5) / 5;
+
+                // Insert into DB
+                score.insert(id, sid, semesterNo, course1, score1, course2, score2,
+                        course3, score3, course4, score4, course5, score5, average);
+
+                // Refresh table
+                score.getScoreValue(jTable3, "");
+
+                // Clear input fields
+                clearScore();
+
+                JOptionPane.showMessageDialog(this, "✅ Score added successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "❌ Please enter valid numeric scores!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Semester " + semesterNo + " score already added for this student");
+        }
     }
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -1986,8 +2169,32 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
+
+        if (jTextFieldStudentID.getText().isEmpty() || jTextFieldSemesterNO.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a student and enter semester number");
+            return;
+        }
+        int sid = Integer.parseInt(jTextFieldStudentID.getText());
+        int semesterNo = Integer.parseInt(jTextFieldSemesterNO.getText());
+
+        addScore(sid, semesterNo);
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private boolean isNumeric(String s) {
+        try {
+            double d = Double.parseDouble(s);
+            if (d >= 0.0 && d <= 4.0) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(this, "Please enter a valid value, it must be between 0.0 to 4.0");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            System.out.print(e);
+        }
+        return false;
+    }
+
 
     private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
         // TODO add your handling code here:
@@ -2237,22 +2444,22 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-    try {
-        MessageFormat header = new MessageFormat("All Student Information");
-        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+        try {
+            MessageFormat header = new MessageFormat("All Student Information");
+            MessageFormat footer = new MessageFormat("Page {0,number,integer}");
 
-        boolean complete = jTable1.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            boolean complete = jTable1.print(JTable.PrintMode.FIT_WIDTH, header, footer);
 
-        if (complete) {
-            JOptionPane.showMessageDialog(this, "Printing completed successfully!", "Print", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Printing was canceled!", "Print", JOptionPane.WARNING_MESSAGE);
+            if (complete) {
+                JOptionPane.showMessageDialog(this, "Printing completed successfully!", "Print", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Printing was canceled!", "Print", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(this, "Print Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    } catch (PrinterException ex) {
-        JOptionPane.showMessageDialog(this, "Print Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-    }
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -2312,30 +2519,30 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         try {
-        MessageFormat header = new MessageFormat("All Student Course Information");
-        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+            MessageFormat header = new MessageFormat("All Student Course Information");
+            MessageFormat footer = new MessageFormat("Page {0,number,integer}");
 
-        boolean complete = jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            boolean complete = jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
 
-        if (complete) {
-            JOptionPane.showMessageDialog(this, "Printing completed successfully!", "Print", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Printing was canceled!", "Print", JOptionPane.WARNING_MESSAGE);
+            if (complete) {
+                JOptionPane.showMessageDialog(this, "Printing completed successfully!", "Print", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Printing was canceled!", "Print", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(this, "Print Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    } catch (PrinterException ex) {
-        JOptionPane.showMessageDialog(this, "Print Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-    }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-     jTable2.setModel(new DefaultTableModel(
-        null,
-        new Object[]{"id", "student_id", "semester", "course1", "course2", "course3", "course4", "course5"}
-    ));
-    
-    course.getCourseValue(jTable2, SearchFilde1.getText().trim());
+        jTable2.setModel(new DefaultTableModel(
+                null,
+                new Object[]{"id", "student_id", "semester", "course1", "course2", "course3", "course4", "course5"}
+        ));
+
+        course.getCourseValue(jTable2, SearchFilde1.getText().trim());
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void SearchFilde1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFilde1ActionPerformed
@@ -2350,6 +2557,215 @@ public class Home extends javax.swing.JFrame {
         jTable2.setModel(new DefaultTableModel(null, new Object[]{"id", "student_id", "semester", "course1", "course2", "course3", "course4", "course5"}));
         course.getCourseValue(jTable2, "");
         SearchFilde1.setText(null);    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jTextField31KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField31KeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField31KeyTyped
+
+    private void jTextField34KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField34KeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField34KeyTyped
+
+    private void jTextFieldSemesterNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSemesterNOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSemesterNOActionPerformed
+
+    private void jTextCourse4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCourse4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCourse4ActionPerformed
+
+    private void jTextScore2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextScore2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextScore2ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        clearScore();
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        String studentIdText = jTextField31.getText().trim();
+        String semesterText = jTextField34.getText().trim();
+
+        if (studentIdText.isEmpty() || semesterText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Student ID or semester number is missing");
+            return;
+        }
+
+        if (!isNumeric(studentIdText) || !isNumeric(semesterText)) {
+            JOptionPane.showMessageDialog(this, "Invalid input. Please enter numeric values.");
+            return;
+        }
+
+        int sid = Integer.parseInt(studentIdText);
+        int semNO = Integer.parseInt(semesterText);
+
+        boolean found = score.getDetails(sid, semNO); // Populate fields if record exists
+        if (!found) {
+            JOptionPane.showMessageDialog(this, "No record found for given Student ID & Semester");
+        } else {
+            // Auto-fill the Student ID and Semester number fields for jButton19
+            jTextFieldStudentID.setText(String.valueOf(sid));
+            jTextFieldSemesterNO.setText(String.valueOf(semNO));
+
+            // Now user can click "Add/Save" button and it will use this data
+        }
+
+    }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jTextFieldStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldStudentIDActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        try {
+            MessageFormat header = new MessageFormat("All Student Course and scores Information");
+            MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+
+            boolean complete = jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+
+            if (complete) {
+                JOptionPane.showMessageDialog(this, "Printing completed successfully!", "Print", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Printing was canceled!", "Print", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(this, "Print Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        String searchText = SearchFilde2.getText().trim();
+        score.getScoreValue(jTable3, searchText);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        SearchFilde2.setText("");
+        score.getScoreValue(jTable3, "");
+     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // Validate inputs
+        if (jTextFieldStudentID.getText().isEmpty() || jTextFieldSemesterNO.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a student and enter semester number");
+            return;
+        }
+
+        if (!isNumeric(jTextScore1.getText()) || !isNumeric(jTextScore2.getText())
+                || !isNumeric(jTextScore3.getText()) || !isNumeric(jTextScore4.getText())
+                || !isNumeric(jTextScore5.getText())) {
+            JOptionPane.showMessageDialog(this, "Please enter valid numeric scores!");
+            return;
+        }
+
+        int sid = Integer.parseInt(jTextFieldStudentID.getText());
+        int semNo = Integer.parseInt(jTextFieldSemesterNO.getText());
+
+        double score1 = Double.parseDouble(jTextScore1.getText());
+        double score2 = Double.parseDouble(jTextScore2.getText());
+        double score3 = Double.parseDouble(jTextScore3.getText());
+        double score4 = Double.parseDouble(jTextScore4.getText());
+        double score5 = Double.parseDouble(jTextScore5.getText());
+        double average = (score1 + score2 + score3 + score4 + score5) / 5;
+
+        String course1 = jTextCourse1.getText();
+        String course2 = jTextCourse2.getText();
+        String course3 = jTextCourse3.getText();
+        String course4 = jTextCourse4.getText();
+        String course5 = jTextCourse5.getText();
+
+        // Call update method (doesn’t return boolean)
+        score.update(sid, semNo, course1, score1, course2, score2, course3, score3,
+                course4, score4, course5, score5, average);
+
+        // Refresh table after update
+        score.getScoreValue(jTable3, "");
+        clearScore();
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jTextScore1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextScore1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextScore1ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        int row = jTable3.getSelectedRow(); // get selected row index
+        if (row >= 0) {
+            // Fill input fields from selected row
+            jTextFieldStudentID.setText(jTable3.getValueAt(row, 1).toString());
+            jTextFieldSemesterNO.setText(jTable3.getValueAt(row, 2).toString());
+
+            jTextCourse1.setText(jTable3.getValueAt(row, 3).toString());
+            jTextScore1.setText(jTable3.getValueAt(row, 4).toString());
+            jTextCourse2.setText(jTable3.getValueAt(row, 5).toString());
+            jTextScore2.setText(jTable3.getValueAt(row, 6).toString());
+            jTextCourse3.setText(jTable3.getValueAt(row, 7).toString());
+            jTextScore3.setText(jTable3.getValueAt(row, 8).toString());
+            jTextCourse4.setText(jTable3.getValueAt(row, 9).toString());
+            jTextScore4.setText(jTable3.getValueAt(row, 10).toString());
+            jTextCourse5.setText(jTable3.getValueAt(row, 11).toString());
+            jTextScore5.setText(jTable3.getValueAt(row, 12).toString());
+        }    }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        if (jTextField38.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a student ID");
+            return;
+        }
+
+        try {
+            int sid = Integer.parseInt(jTextField38.getText());
+
+            if (marksSheet.isIdExist(sid)) { // check if scores exist
+                jTable5.setModel(new DefaultTableModel(
+                        null,
+                        new Object[]{"id", "student_id", "semester", "course1", "score1",
+                            "course2", "score2", "course3", "score3",
+                            "course4", "score4", "course5", "score5", "average"}
+                ));
+
+                // Fetch and show only this student's marks
+                marksSheet.getScoreValue(jTable5, sid);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No scores found for this student ID");
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid student ID. Please enter numeric value.");
+        }
+    }//GEN-LAST:event_jButton39ActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+            clearMaarksSheet();
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+    try {
+        // Get student name from the input field or table
+        String studentName = jTextField3.getText(); // or fetch from DB if needed
+
+        // Set the header to include the student name
+        MessageFormat header = new MessageFormat("Marksheet of: " + studentName);
+        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+
+        boolean complete = jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+
+        if (complete) {
+            JOptionPane.showMessageDialog(this, "Printing completed successfully!", "Print", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Printing was canceled!", "Print", JOptionPane.WARNING_MESSAGE);
+        }
+
+    } catch (PrinterException ex) {
+        JOptionPane.showMessageDialog(this, "Print Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+    }   
+    }//GEN-LAST:event_jButton31ActionPerformed
 
     private ImageIcon imageAdjust(String path, byte[] pic) {
         ImageIcon myImage = null;
@@ -2505,28 +2921,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
+    public static javax.swing.JTextField jTextCourse1;
+    public static javax.swing.JTextField jTextCourse2;
+    public static javax.swing.JTextField jTextCourse3;
+    public static javax.swing.JTextField jTextCourse4;
+    public static javax.swing.JTextField jTextCourse5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     public static javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -2534,5 +2942,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    public static javax.swing.JTextField jTextFieldSemesterNO;
+    public static javax.swing.JTextField jTextFieldStudentID;
+    private javax.swing.JTextField jTextScore1;
+    private javax.swing.JTextField jTextScore2;
+    private javax.swing.JTextField jTextScore3;
+    private javax.swing.JTextField jTextScore4;
+    private javax.swing.JTextField jTextScore5;
     // End of variables declaration//GEN-END:variables
 }
