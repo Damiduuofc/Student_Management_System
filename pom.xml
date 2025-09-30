@@ -18,11 +18,12 @@
 
     <dependencies>
     <!-- MySQL JDBC -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.33</version>
-    </dependency>
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.0.33</version>
+</dependency>
+
 
     <!-- JCalendar -->
     <dependency>
