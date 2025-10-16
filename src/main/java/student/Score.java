@@ -50,11 +50,21 @@ public boolean getDetails(int sid, int semNO) {
         ps.setInt(1, sid);
         ps.setInt(2, semNO);
 
+        // ✅ ADD DEBUGGING
+        System.out.println("=== DEBUG INFO ===");
+        System.out.println("Searching for Student ID: " + sid);
+        System.out.println("Searching for Semester: " + semNO);
+        System.out.println("Query: " + query);
+
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            // Use column names instead of indexes if possible
-            Home.jTextFieldStudentID.setText(String.valueOf(rs.getInt("id"))); 
-            Home.jTextFieldSemesterNO.setText(String.valueOf(rs.getInt("student_id")));
+            System.out.println("✅ RECORD FOUND!");
+            System.out.println("student_id: " + rs.getInt("student_id"));
+            System.out.println("semester: " + rs.getInt("semester"));
+            System.out.println("course1: " + rs.getString("course1"));
+            
+            Home.jTextFieldStudentID.setText(String.valueOf(rs.getInt("student_id"))); 
+            Home.jTextFieldSemesterNO.setText(String.valueOf(rs.getInt("semester")));
             Home.jTextCourse1.setText(rs.getString("course1"));
             Home.jTextCourse2.setText(rs.getString("course2"));
             Home.jTextCourse3.setText(rs.getString("course3"));
@@ -63,9 +73,11 @@ public boolean getDetails(int sid, int semNO) {
 
             return true;
         } else {
+            System.out.println("❌ NO RECORD FOUND");
             JOptionPane.showMessageDialog(null, "Student ID or semester number doesn't exist");
         }
     } catch (SQLException ex) {
+        System.out.println("❌ SQL ERROR: " + ex.getMessage());
         Logger.getLogger(Score.class.getName()).log(Level.SEVERE, null, ex);
     }
     return false;

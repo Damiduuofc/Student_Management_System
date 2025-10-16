@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -66,7 +67,6 @@ public class Home extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField4 = new javax.swing.JTextField();
@@ -90,6 +90,7 @@ public class Home extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabelImage = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -254,13 +255,6 @@ public class Home extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         jTextField3.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
         jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -392,34 +386,39 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 445, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 277, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField9))
-                        .addGap(18, 18, 18))))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                    .addComponent(jTextField1)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(12, 12, 12)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,10 +432,10 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jTextField3)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 9, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -466,7 +465,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(109, 109, 109))
         );
 
         jPanel5.setBackground(new java.awt.Color(153, 255, 204));
@@ -693,7 +692,7 @@ public class Home extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -702,10 +701,10 @@ public class Home extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Student", jPanel3);
@@ -1681,7 +1680,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1599, Short.MAX_VALUE))
+                .addContainerGap(664, Short.MAX_VALUE))
         );
 
         jPanel30.setBackground(new java.awt.Color(153, 255, 204));
@@ -1797,7 +1796,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1141, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
@@ -1840,8 +1839,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1854,7 +1852,7 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 79, Short.MAX_VALUE))
+                .addGap(0, 1158, Short.MAX_VALUE))
         );
 
         pack();
@@ -1881,22 +1879,23 @@ public class Home extends javax.swing.JFrame {
         jTable1.setBackground(Color.white);
     }
 
-    private void clearStudent() {
+private void clearStudent() {
+    jTextField1.setText(String.valueOf(student.getMax()));
+  
+    jTextField3.setText(null);
+    jTextField4.setText(null);
+    jTextField5.setText(null);
+    jTextField6.setText(null);
+    jTextField7.setText(null);
+    jTextField8.setText(null);
+    jTextField9.setText(null);
+    jComboBox1.setSelectedIndex(0);
+    jLabelImage.setIcon(null);
+    jDateChooser2.setDate(null); // ✅ Clears the date picker properly
+    jTable1.clearSelection();
+    imagePath = null;
+}
 
-        jTextField1.setText(String.valueOf(student.getMax()));
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
-        jTextField5.setText(null);
-        jTextField6.setText(null);
-        jTextField7.setText(null);
-        jTextField8.setText(null);
-        jTextField9.setText(null);
-        jComboBox1.setSelectedIndex(0);
-        jLabelImage.setIcon(null);
-        jTable1.clearSelection();
-        imagePath = null;
-    }
     private void clearMaarksSheet(){
         jTextField38.setText(null);
         jTable5.clearSelection();
@@ -1962,57 +1961,62 @@ public class Home extends javax.swing.JFrame {
         jTable5.setBackground(Color.white);
     }
 
-    public boolean isEmptyStudent() {
-        if (jTextField3.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student name is missing");
-            return false;
-        }
-        if (jTextField2.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student Date of Bith is missing");
-            return false;
-        }
-        if (jTextField4.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student email is missing");
-            return false;
-        }
-
-        if (jTextField5.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-            JOptionPane.showMessageDialog(this, "Invalid email address");
-            return false;
-        }
-
-        if (jTextField5.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student Phone number is missing");
-            return false;
-        }
-
-        if (jTextField5.getText().length() > 10) {
-            JOptionPane.showMessageDialog(this, "Phone number is too long");
-            return false;
-        }
-
-        if (jTextField6.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student Farther's Name is missing");
-            return false;
-        }
-        if (jTextField7.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student Mother's Name is missing");
-            return false;
-        }
-        if (jTextField8.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student AddressLine 1 is missing");
-            return false;
-        }
-        if (jTextField9.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student AddressLine 2 is missing");
-            return false;
-        }
-        if (imagePath == null) {
-            JOptionPane.showMessageDialog(this, "Please upload the photo");
-            return false;
-        }
-        return true;
+   public boolean isEmptyStudent() {
+    if (jTextField3.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student name is missing");
+        return false;
     }
+
+    if (jDateChooser2.getDate() == null) { // ✅ check the date chooser now
+        JOptionPane.showMessageDialog(this, "Student Date of Birth is missing");
+        return false;
+    }
+
+    if (jTextField4.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student email is missing");
+        return false;
+    }
+
+    // check for invalid email
+    if (!jTextField4.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+        JOptionPane.showMessageDialog(this, "Invalid email address");
+        return false;
+    }
+
+    if (jTextField5.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student Phone number is missing");
+        return false;
+    }
+
+    if (jTextField5.getText().length() > 10) {
+        JOptionPane.showMessageDialog(this, "Phone number is too long");
+        return false;
+    }
+
+    if (jTextField6.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student Father's Name is missing");
+        return false;
+    }
+    if (jTextField7.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student Mother's Name is missing");
+        return false;
+    }
+    if (jTextField8.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student Address Line 1 is missing");
+        return false;
+    }
+    if (jTextField9.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student Address Line 2 is missing");
+        return false;
+    }
+    if (imagePath == null) {
+        JOptionPane.showMessageDialog(this, "Please upload the photo");
+        return false;
+    }
+
+    return true;
+}
+
 
     private void addScore(int sid, int semesterNo) {
         if (!score.isSidOrSemesterNoExist(sid, semesterNo)) {
@@ -2055,39 +2059,48 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (isEmptyStudent()) {
-            if (!student.isEmailExist(jTextField4.getText())) {
-                if (!student.isPhoneExist(jTextField5.getText())) {
+    if (isEmptyStudent()) {
+        if (!student.isEmailExist(jTextField4.getText())) {
+            if (!student.isPhoneExist(jTextField5.getText())) {
 
-                    int id = student.getMax();
-                    String name = jTextField3.getText();
-                    String date = jTextField2.getText();
-                    String gender = jComboBox1.getSelectedItem().toString();
-                    String email = jTextField4.getText();
-                    String Phone = jTextField5.getText();
-                    String Farther = jTextField6.getText();
-                    String Mother = jTextField7.getText();
-                    String Address1 = jTextField8.getText();
-                    String Address2 = jTextField9.getText();
-                    student.insert(id, name, date, gender, email, Phone, Farther, Mother, Address1, Address2, imagePath);
-
-                    jTable1.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Student Name", "Date Of Birth", "Gender", "Email", "Phone number", "Farther Name", "Mother Name", "Address Line1", "Address Line2", "Image Path"}));
-                    student.getStudentValue(jTable1, "");
-                    clearStudent();
-                } else {
-                    JOptionPane.showMessageDialog(this, "This phone number already exists");
+                Date selectedDate = jDateChooser2.getDate();
+                if (selectedDate == null) {
+                    JOptionPane.showMessageDialog(this, "Please select a Date of Birth!");
+                    return; // stop execution here
                 }
 
-            } else {
-                JOptionPane.showMessageDialog(this, "This email address already exists");
-            }
+                int id = student.getMax();
+                String name = jTextField3.getText();
 
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String date = dateFormat.format(selectedDate);
+
+                String gender = jComboBox1.getSelectedItem().toString();
+                String email = jTextField4.getText();
+                String phone = jTextField5.getText();
+                String father = jTextField6.getText();
+                String mother = jTextField7.getText();
+                String address1 = jTextField8.getText();
+                String address2 = jTextField9.getText();
+
+                student.insert(id, name, date, gender, email, phone, father, mother, address1, address2, imagePath);
+
+                jTable1.setModel(new DefaultTableModel(null, new Object[]{
+                    "Student ID", "Student Name", "Date Of Birth", "Gender", "Email",
+                    "Phone number", "Father Name", "Mother Name", "Address Line1",
+                    "Address Line2", "Image Path"
+                }));
+                student.getStudentValue(jTable1, "");
+                clearStudent();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "This phone number already exists");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "This email address already exists");
         }
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -2284,34 +2297,46 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (isEmptyStudent()) {
+       if (isEmptyStudent()) {
 
-            int id = Integer.parseInt(jTextField1.getText());
-            if (student.isIdExist(id)) {
-                if (!check()) {
+        int id = Integer.parseInt(jTextField1.getText());
+        if (student.isIdExist(id)) {
+            if (!check()) {
 
-                    String name = jTextField3.getText();
-                    String date = jTextField2.getText();
-                    String gender = jComboBox1.getSelectedItem().toString();
-                    String email = jTextField4.getText();
-                    String Phone = jTextField5.getText();
-                    String Farther = jTextField6.getText();
-                    String Mother = jTextField7.getText();
-                    String Address1 = jTextField8.getText();
-                    String Address2 = jTextField9.getText();
-                    student.update(id, name, date, gender, email, Phone, Farther, Mother, Address1, Address2, imagePath);
+                String name = jTextField3.getText();
 
-                    jTable1.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Student Name", "Date Of Birth", "Gender", "Email", "Phone number", "Farther Name", "Mother Name", "Address Line1", "Address Line2", "Image Path"}));
-                    student.getStudentValue(jTable1, "");
-                    clearStudent();
-
+                // ✅ get date from JDateChooser
+                Date selectedDate = jDateChooser2.getDate();
+                if (selectedDate == null) {
+                    JOptionPane.showMessageDialog(this, "Please select Date of Birth!");
+                    return;
                 }
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(selectedDate);
 
-            } else {
-                JOptionPane.showMessageDialog(this, "student id doesn't exist");
+                String gender = jComboBox1.getSelectedItem().toString();
+                String email = jTextField4.getText();
+                String phone = jTextField5.getText();
+                String father = jTextField6.getText();
+                String mother = jTextField7.getText();
+                String address1 = jTextField8.getText();
+                String address2 = jTextField9.getText();
 
+                student.update(id, name, date, gender, email, phone, father, mother, address1, address2, imagePath);
+
+                // Refresh table
+                jTable1.setModel(new DefaultTableModel(null, new Object[]{
+                    "Student ID", "Student Name", "Date Of Birth", "Gender", "Email",
+                    "Phone number", "Father Name", "Mother Name", "Address Line1",
+                    "Address Line2", "Image Path"
+                }));
+                student.getStudentValue(jTable1, "");
+                clearStudent();
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Student ID doesn't exist");
         }
+    }
+
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -2344,63 +2369,68 @@ public class Home extends javax.swing.JFrame {
 
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        model = (DefaultTableModel) jTable1.getModel();
-        rowIndex = jTable1.getSelectedRow();
-        jTextField1.setText(model.getValueAt(rowIndex, 0).toString());
-        jTextField3.setText(model.getValueAt(rowIndex, 1).toString());
-        jTextField2.setText(model.getValueAt(rowIndex, 2).toString());
+    model = (DefaultTableModel) jTable1.getModel();
+    rowIndex = jTable1.getSelectedRow();
 
-        String gender = model.getValueAt(rowIndex, 3).toString();
-        if (gender.equals("Male")) {
-            jComboBox1.setSelectedIndex(0);
-        } else {
-            jComboBox1.setSelectedIndex(1);
+    jTextField1.setText(model.getValueAt(rowIndex, 0).toString());
+    jTextField3.setText(model.getValueAt(rowIndex, 1).toString());
 
-        }
+    // ✅ Set date properly in JDateChooser
+    String dob = model.getValueAt(rowIndex, 2).toString();
+    try {
+        java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+        jDateChooser2.setDate(date);
+    } catch (Exception e) {
+        jDateChooser2.setDate(null);
+    }
 
-        jTextField4.setText(model.getValueAt(rowIndex, 4).toString());
-        jTextField5.setText(model.getValueAt(rowIndex, 5).toString());
-        jTextField6.setText(model.getValueAt(rowIndex, 6).toString());
-        jTextField7.setText(model.getValueAt(rowIndex, 7).toString());
-        jTextField8.setText(model.getValueAt(rowIndex, 8).toString());
-        jTextField9.setText(model.getValueAt(rowIndex, 9).toString());
-        String path = model.getValueAt(rowIndex, 10).toString();
-        imagePath = path;
+    String gender = model.getValueAt(rowIndex, 3).toString();
+    if (gender.equals("Male")) {
+        jComboBox1.setSelectedIndex(0);
+    } else {
+        jComboBox1.setSelectedIndex(1);
+    }
 
-        jLabelImage.setIcon(imageAdjust(path, null));
+    jTextField4.setText(model.getValueAt(rowIndex, 4).toString());
+    jTextField5.setText(model.getValueAt(rowIndex, 5).toString());
+    jTextField6.setText(model.getValueAt(rowIndex, 6).toString());
+    jTextField7.setText(model.getValueAt(rowIndex, 7).toString());
+    jTextField8.setText(model.getValueAt(rowIndex, 8).toString());
+    jTextField9.setText(model.getValueAt(rowIndex, 9).toString());
+
+    String path = model.getValueAt(rowIndex, 10).toString();
+    imagePath = path;
+    jLabelImage.setIcon(imageAdjust(path, null));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        String idText = jTextField1.getText().trim();
+    String idText = jTextField1.getText().trim();
+    if (idText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter a Student ID before deleting.");
+        return;
+    }
 
-        if (idText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a Student ID before deleting.");
-            return;
+    try {
+        int id = Integer.parseInt(idText);
+
+        if (student.isIdExist(id)) {
+            student.delete(id);
+
+            // Reset table
+            jTable1.setModel(new DefaultTableModel(null, new Object[]{
+                "Student ID", "Student Name", "Date Of Birth", "Gender", "Email",
+                "Phone number", "Father Name", "Mother Name",
+                "Address Line1", "Address Line2", "Image Path"
+            }));
+            student.getStudentValue(jTable1, "");
+            clearStudent();
+        } else {
+            JOptionPane.showMessageDialog(this, "Student ID doesn't exist");
         }
 
-        try {
-            int id = Integer.parseInt(idText);
-
-            if (student.isIdExist(id)) {
-                student.delete(id);
-
-                // Reset table model
-                jTable1.setModel(new DefaultTableModel(
-                        null,
-                        new Object[]{"Student ID", "Student Name", "Date Of Birth", "Gender", "Email",
-                            "Phone number", "Father Name", "Mother Name",
-                            "Address Line1", "Address Line2", "Image Path"}
-                ));
-
-                student.getStudentValue(jTable1, "");
-                clearStudent();
-            } else {
-                JOptionPane.showMessageDialog(this, "Student ID doesn't exist");
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Invalid ID. Please enter a valid number.");
-        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Invalid ID. Please enter a valid number.");
+    }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2564,32 +2594,28 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        String studentIdText = jTextField31.getText().trim();
-        String semesterText = jTextField34.getText().trim();
-
-        if (studentIdText.isEmpty() || semesterText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Student ID or semester number is missing");
-            return;
-        }
-
-        if (!isNumeric(studentIdText) || !isNumeric(semesterText)) {
-            JOptionPane.showMessageDialog(this, "Invalid input. Please enter numeric values.");
-            return;
-        }
-
-        int sid = Integer.parseInt(studentIdText);
-        int semNO = Integer.parseInt(semesterText);
-
-        boolean found = score.getDetails(sid, semNO); // Populate fields if record exists
-        if (!found) {
-            JOptionPane.showMessageDialog(this, "No record found for given Student ID & Semester");
-        } else {
-            // Auto-fill the Student ID and Semester number fields for jButton19
-            jTextFieldStudentID.setText(String.valueOf(sid));
-            jTextFieldSemesterNO.setText(String.valueOf(semNO));
-
-            // Now user can click "Add/Save" button and it will use this data
-        }
+    String studentIdText = jTextField31.getText().trim();
+    String semesterText = jTextField34.getText().trim();
+    
+    if (studentIdText.isEmpty() || semesterText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student ID or semester number is missing");
+        return;
+    }
+    
+ 
+    
+    int sid = Integer.parseInt(studentIdText);
+    int semNO = Integer.parseInt(semesterText);
+    
+    // Just use getDetails - it will return true/false
+    boolean found = score.getDetails(sid, semNO);
+    
+    if (!found) {
+        JOptionPane.showMessageDialog(this, "No record found for given Student ID & Semester");
+    } else {
+        jTextFieldStudentID.setText(String.valueOf(sid));
+        jTextFieldSemesterNO.setText(String.valueOf(semNO));
+    }
 
     }//GEN-LAST:event_jButton38ActionPerformed
 
@@ -2821,6 +2847,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2905,7 +2932,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     public static javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField33;

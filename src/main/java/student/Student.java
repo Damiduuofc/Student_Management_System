@@ -156,26 +156,30 @@ public void update(int id, String sname, String date, String gender, String emai
     
     try {
         ps = con.prepareStatement(sql);
-        ps.setString(1, sname);
-        ps.setString(2, date);
-        ps.setString(3, gender);
-        ps.setString(4, email);
-        ps.setString(5, phone);
-        ps.setString(6, father);
-        ps.setString(7, mother);
-        ps.setString(8, address1);
-        ps.setString(9, address2);
-        ps.setString(10, imagePath);
-        ps.setInt(11, id);
-        
+        ps.setString(1, sname);                       // name
+        ps.setDate(2, java.sql.Date.valueOf(date));   // date_of_birth
+        ps.setString(3, gender);                      // gender
+        ps.setString(4, email);                       // email
+        ps.setString(5, phone);                       // phone
+        ps.setString(6, father);                      // father_name
+        ps.setString(7, mother);                      // mother_name
+        ps.setString(8, address1);                    // address1
+        ps.setString(9, address2);                    // address2
+        ps.setString(10, imagePath);                  // image_path
+        ps.setInt(11, id);                            // WHERE id=?
+
         if (ps.executeUpdate() > 0) {
             JOptionPane.showMessageDialog(null, "Student data updated successfully");
         }
-        
+
     } catch (SQLException ex) {
-        ex.printStackTrace(); // or use a proper logger
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "SQL Error: " + ex.getMessage());
     }
 }
+
+
+
 public void delete(int id) {
     int yesOrNo = JOptionPane.showConfirmDialog(null, 
         "Courses and scores record will also be deleted",
