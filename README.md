@@ -46,14 +46,14 @@ This system enables administrators to manage student details, courses, and acade
 ## 🗄️ Database Setup
 To create the database and tables, simply run the following SQL script in **MySQL Workbench**:
 
-📄 [`database/student_management.sql`](./student_management.sql)
+📄 [`database`](./student_management.sql)
 
 
 ## 📂 Project Structure
 ```
 Student_Management_System/
 ├── src/                # Source code (Java OOP classes)
-├── database/           # SQL scripts for database setup
+├── student_management/ # SQL scripts for database setup
 ├── docs/               # Project reports, synopsis, documents
 ├── README.md           # Project description (this file)
 ```
