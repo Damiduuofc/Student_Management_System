@@ -43,10 +43,22 @@ This system enables administrators to manage student details, courses, and acade
 
 ---
 
-## 🗄️ Database Setup
-To create the database and tables, simply run the following SQL script in **MySQL Workbench**:
+## 🗄️ Database Setup  
 
-📄 [`database`](./student_management.sql)
+Easily set up your project database using the provided SQL script.
+
+### 🚀 Steps  
+
+1. Open **MySQL Workbench** (or any MySQL client).  
+2. Connect to your local or remote MySQL server.  
+3. Run the following command in the SQL editor:  
+
+   ```sql
+   SOURCE ./student_management.sql;
+This will automatically create the database and all necessary tables for the system.
+📄 SQL File: student_management.sql
+💡 Tip: Ensure your MySQL server is running before executing the script.
+🧠 If you’re using XAMPP, you can also import the file through phpMyAdmin → “Import” tab.
 
 
 ## 📂 Project Structure
